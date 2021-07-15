@@ -1,0 +1,190 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+
+void mostrarMenu ();
+double Sumar(double n1, double n2);
+double Restar(double n1, double n2);
+double Multiplicar(double n1, double n2);
+double Dividir(double n1, double n2);
+double raiz(double n1);
+double Potencia(double n1,double n2);
+double Coseno(double n1);
+double Seno(double n1);
+double Tangente(double n1);
+int calcular(double res);
+double resultado;
+
+double historial[100];
+
+
+
+void mostrarMenu(){
+printf ("1. Sumar ");
+  printf ("\n2. Restar ");
+  printf ("\n3. Multiplicar ");
+  printf ("\n4. Dividir");
+  printf ("\n5. RaizCuadrada");
+  printf ("\n6. Potencia");
+  printf ("\n7. Seno");
+  printf ("\n8. Coseno");
+  printf ("\n9. Tangente");
+  printf ("\n10. Historial");
+  printf ("\n0. Salir\n");
+}
+
+void main (){
+  calcular(false);
+
+
+}
+int calcular(double res){
+
+int contador=0 ;
+char s,n;
+double resultado;
+
+int operar_con_resultado=0;
+int opc = 1;
+int indice=0;
+  while(opc!=0){
+
+    mostrarMenu();
+    printf ("\nDigite su opcion: ");
+    scanf ("%d", &opc);
+    if(opc == 0){
+        exit(-1);
+    }
+    double n1;
+    if(res!=false){
+    n1=res;
+    }else{
+      printf ("\nIngrese un numero: ");
+      scanf ("%lf", &n1);
+      fflush(stdin);
+        }
+
+    switch (opc){
+    double n2;
+    case 1:
+      printf ("\nIngrese un numero: ");
+      scanf ("%lf", &n2);
+      resultado=Sumar (n1, n2);
+      contador=contador+1;
+      break;
+    case 2:
+      printf ("\nIngrese un numero: ");
+      scanf ("%lf", &n2);
+      resultado = Restar(n1, n2);
+      contador=contador+1;
+      break;
+    case 3:
+      printf ("\nIngrese un numero: ");
+      scanf ("%lf", &n2);
+      resultado=Multiplicar (n1,n2);
+     contador=contador+1;
+      break;
+    case 4:
+      printf ("\nIngrese un numero: ");
+      scanf ("%lf", &n2);
+      resultado=Dividir (n1, n2);
+      contador=contador+1;
+      break;
+    case 5:
+      resultado=raiz (n1);
+      contador=contador+1;
+      break;
+    case 6:
+      printf ("\nIngrese un numero: ");
+      scanf ("%lf", &n2);
+      resultado=Potencia (n1,n2);
+      contador=contador+1;
+      break;
+    case 7:
+      resultado=Seno (n1);
+      contador=contador+1;
+      break;
+    case 8:
+      resultado=Coseno (n1);
+      contador=contador+1;
+      break;
+    case 9:
+      resultado=Tangente (n1);
+      contador=contador+1;
+    case 10:
+        Historial(resultado);
+
+      break;
+      }
+      historial[indice] = resultado;
+  printf("\n%cDesea continuar con el resultado? s/n\n",168);
+  scanf("%s",&s);
+    if(s == 's'){
+      operar_con_resultado = 1;
+    calcular(resultado);
+
+      }else{
+      operar_con_resultado = 0;
+     break;
+    }
+
+   }
+   contador=contador+1;
+   printf("\nLa cantidad de operaciones realizadas fueron: %d\n",contador);
+
+}
+
+double Sumar (double n1, double n2){
+  double resultado=n1+n2;
+  printf ("\n%.2lf + %.2lf = %.2lf\n", n1,n2,resultado);
+  return resultado;
+  }
+double Restar (double n1, double n2){
+  double resultado=n1-n2;
+  printf ("\n%.2lf - %.2lf = %.2lf\n", n1,n2,resultado);
+  return resultado;
+  }
+double Multiplicar (double n1,double n2){
+  double resultado=n1*n2;
+  printf ("\n%.2lf * %.2lf = %.2lf\n", n1,n2,resultado);
+  return resultado;
+  }
+double Dividir (double n1, double n2){
+  double resultado=n1/n2;
+  printf ("\n%.2lf / %.2lf = %.2lf\n", n1,n2,resultado);
+  return resultado;
+  }
+double raiz(double n1){
+  double resultado=sqrt(n1);
+  printf ("\nraiz %.2lf = %.2lf\n",n1,resultado);
+  return resultado;
+  }
+double Potencia(double n1,double n2){
+  double resultado=pow(n1,n2);
+  printf ("\n%.2lf ^ %.2lf = %.2lf\n",n1,n2,resultado);
+  return resultado;
+  }
+double Seno(double n1){
+  double resultado=sin(n1);
+    printf ("\nsen %.2lf = %.2lf\n",n1,resultado);
+  return resultado;
+  }
+double Coseno(double n1){
+  double resultado=cos(n1);
+  printf ("\ncos %.2lf = %.2lf\n",n1,resultado);
+  return resultado;
+  }
+double Tangente(double n1){
+  double resultado=tan(n1);
+  printf ("\ntan %.2lf = %.2lf\n",n1,resultado);
+  return resultado;
+}
+void Historial(int resultado){
+    int i;
+
+for (i=resultado;i<0;i--){
+      printf("Historial de operaciones: %lf\n",historial[i-1]);
+      return historial;
+    }
+}
